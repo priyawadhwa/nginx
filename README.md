@@ -7,6 +7,18 @@ If you'd like to see other architectures supported, please file an issue!
 
 ## Usage
 
+The image is available at the following tags:
+
+```
+docker pull distroless.dev/nginx:latest # Latest, build from head
+docker pull distroless.dev/nginx:[nginx version] # Pull at a specific version
+```
+
+Currently nginx version 1.20.2 is supported.
+
+## Try it Out
+
+
 To try out the image, run:
 
 ```

@@ -29,6 +29,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - uses: sigstore/cosign-installer@main
+    - uses: mikefarah/yq@v4.25.3
 
     - name: Setup QEMU
       uses: docker/setup-qemu-action@v2.0.0
@@ -40,12 +41,19 @@ jobs:
         empty-workspace: true
         archs: x86_64,aarch64,armv7
 
+    - name: Get nginx version
+      id: nginx-version
+      run: |
+        nginx_version=$(yq '.package.version' melange.yaml)
+        echo '::set-output name=nginx_version::$nginx_version'
+
     - uses: distroless/actions/apko-snapshot@main
       with:
         config: apko.yaml
         base-tag: ghcr.io/${{ github.repository }}
         keyring-append: /github/workspace/melange.rsa.pub
         archs: x86_64,aarch64,armv7
+        additional-tags: ${{ steps.nginx-version.outputs.nginx_version }}
 
     - if: ${{ failure() }}
       uses: rtCamp/action-slack-notify@v2.2.0
