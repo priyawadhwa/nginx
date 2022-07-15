@@ -35,7 +35,7 @@ jobs:
 
 
     - uses: sigstore/cosign-installer@main
-    - uses: priyawadhwa/actions-1/melange-build@fix-template
+    - uses: priyawadhwa/actions-1/melange-build@fix-actions-1
       with:
         sign-with-temporary-key: true
         config: melange.yaml
