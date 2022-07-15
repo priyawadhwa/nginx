@@ -30,13 +30,13 @@ jobs:
 
 
     - uses: sigstore/cosign-installer@main
-    - uses: priyawadhwa/actions-1/melange-build@main
+    - uses: priyawadhwa/actions-1/melange-build@fix-template
       with:
         sign-with-temporary-key: true
         config: melange.yaml
         empty-workspace: true
         archs: x86_64,aarch64,armv7
-        # template: "{\"Version\": \"${{ matrix.nginx-version }}\" }"
+        template: "{\"Version\": \"${{ matrix.nginx-version }}\" }"
 
     - uses: distroless/actions/apko-build@main
       with:
