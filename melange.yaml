@@ -1,6 +1,6 @@
 package:
   name: nginx
-  version: 1.20.2
+  version: {{.Version}}
   epoch: 0
   description: "the nginx webserver"
   target-architecture:
