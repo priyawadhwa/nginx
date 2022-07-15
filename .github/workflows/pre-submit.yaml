@@ -36,7 +36,7 @@ jobs:
         config: melange.yaml
         empty-workspace: true
         archs: x86_64,aarch64,armv7
-        template: {"Version": "${{ matrix.nginx-version }}" }
+        template: "{\"Version\": \"${{ matrix.nginx-version }}\" }"
 
     - uses: distroless/actions/apko-build@main
       with:
