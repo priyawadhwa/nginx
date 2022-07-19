@@ -1,0 +1,30 @@
+name: Reusable Scanner Workflow
+
+on:
+  workflow_call:
+    inputs:
+      apko-images:
+        required: false
+        type: string
+        default: "[]"
+
+permissions:
+  contents: read      
+
+jobs:
+  scan:
+    name: Scan apko images
+    runs-on: ubuntu-latest
+
+    # https://docs.github.com/en/actions/reference/authentication-in-a-workflow
+    permissions:
+      id-token: write
+      packages: write
+      contents: read
+
+    strategy:
+      matrix:
+        ref: ${{ fromJson(inputs.apko-images) }}
+    steps:
+    - run: |
+        echo ${{ matrix.ref }}
