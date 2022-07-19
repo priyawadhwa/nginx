@@ -32,8 +32,7 @@ jobs:
     - name: Emit Image Refs output
       id: emit-refs
       run: |
-        echo ::set-output name=image-refs::${{ matrix.nginx-version }})
-        ::echo::on
+        echo ::set-output name=image-refs::"[\"${{ matrix.nginx-version }}\"]"
 
   scan:
     name: Scan apko images
