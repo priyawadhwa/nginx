@@ -32,6 +32,7 @@ jobs:
     - name: Emit Image Refs output
       id: emit-refs
       run: |
+        echo ${{ steps.emit-refs.outputs.image-refs }}
         echo ::set-output name=image-refs::"[\"${{ matrix.nginx-version }}\"]"
 
   scan:
