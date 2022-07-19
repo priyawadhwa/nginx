@@ -38,4 +38,4 @@ jobs:
     - name: Run scanner
       uses: priyawadhwa/nginx/.github/workflows/scan.yaml@test
       with:
-        apko-images: ${{ needs.build.outputs.image-refs }}
+        apko-images: ${{ steps.emit-refs.outputs.image-refs }}
