@@ -35,11 +35,7 @@ jobs:
         echo ${{ steps.emit-refs.outputs.image-refs }}
         echo ::set-output name=image-refs::"[\"${{ matrix.nginx-version }}\"]"
 
-  scanner:
-    uses: priyawadhwa/nginx/.github/workflows/scan.yaml@test
-    permissions:
-      id-token: write
-      contents: read
-      packages: write
-    with:
-      apko-images: ${{ needs.build.outputs.image-refs }}
+    - name: Run scanner
+      uses: priyawadhwa/nginx/.github/workflows/scan.yaml@test
+      with:
+        apko-images: ${{ needs.build.outputs.image-refs }}
