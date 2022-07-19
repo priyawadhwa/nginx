@@ -35,20 +35,11 @@ jobs:
         echo ${{ steps.emit-refs.outputs.image-refs }}
         echo ::set-output name=image-refs::"[\"${{ matrix.nginx-version }}\"]"
 
-  scan:
-    name: Scan apko images
-    needs: build
-    runs-on: ubuntu-latest
-
-    # https://docs.github.com/en/actions/reference/authentication-in-a-workflow
+  scanner:
+    uses: priyawadhwa/nginx/.github/workflows/scan.yaml@test
     permissions:
       id-token: write
-      packages: write
       contents: read
-
-    strategy:
-      matrix:
-        ref: ${{ fromJson(needs.build.outputs.image-refs) }}
-    steps:
-    - run: |
-        echo ${{ matrix.ref }}
+      packages: write
+    with:
+      apko-images: ${{ needs.build.outputs.image-refs }}
