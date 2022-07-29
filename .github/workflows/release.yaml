@@ -94,7 +94,7 @@ jobs:
         IMAGE_NAME=$IMAGE_NAME ./test.sh
 
     - name: Additional tags
-      uses: distroless/actions/tag@main
+      uses: priyawadhwa/actions/tag@snip-tag
       with:
         distroless_image: ghcr.io/${{ github.repository }}:${{ matrix.nginx-version }}
         docker_image_tag: ${{ matrix.nginx-version }}
